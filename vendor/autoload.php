@@ -1,10 +1,6 @@
 <?php
 
 namespace vendor;
-// echo __DIR__.'<br>';
-// echo dirname(__DIR__).'<br>';
-// echo dirname(__FILE__).'<br>';
-// echo __FILE__.'<br>';
 
 class autoload
 {
