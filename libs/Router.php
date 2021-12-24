@@ -8,10 +8,12 @@ class Router
 
    /**
     * lấy đường dẫn từ $_SERVER
+    * @return $url từ URL
     */
    private function getRequestURL()
    {
       $url = $_SERVER['REQUEST_URI'] ? $_SERVER['REQUEST_URI'] : '/';
+      $url = parse_url($url)['path'];
       $url = str_replace('/public', '', $url);
       $url = $url === '' || empty($url) ? '/' : $url;
 
@@ -20,6 +22,7 @@ class Router
 
    /**
     * lấy phương thức từ $_SERVER
+    * @return method
     */
    private function getMethod()
    {
@@ -38,7 +41,9 @@ class Router
    }
 
    /**
-    *
+    * @param string $url
+    * @param array $action tham số (controller, action, . . .)
+    * @return method GET
     */
    public static function get($url, $action)
    {
@@ -46,7 +51,9 @@ class Router
    }
 
    /**
-    *
+    * @param string $url
+    * @param array $action tham số (controller, action, . . .)
+    * @return method POST
     */
    public static function post($url, $action)
    {
@@ -54,6 +61,8 @@ class Router
    }
 
    /**
+    * Ánh xạ tuyến đường đến bảng định tuyến
+    * @param string $url từ URL
     *
     */
    private function matching()
@@ -119,6 +128,8 @@ class Router
             {
                if (class_exists($action[0]))
                {
+                  App::setController($action[0]);
+                  App::setAction($action[1]);
                   if (method_exists($action[0], $action[1]))
                   {
                      call_user_func_array($action, $params);
@@ -141,7 +152,8 @@ class Router
    }
 
    /**
-    *
+    * lấy tất cả các tuyến đường từ bảng định tuyến
+    * @return array
     */
    public function getRoute()
    {
