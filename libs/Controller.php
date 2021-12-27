@@ -6,6 +6,7 @@ class Controller
 {
    /**
     * chuyển hướng sang đường dẫn được yêu cầu
+    *
     * @param $url
     */
    public function redirect($url, $isEnd = true, $resPonseCode =302)
@@ -17,8 +18,8 @@ class Controller
 
 	/**
 	 * Render ra view file trong thư mục views
-    * @param $view, $data
     *
+    * @param $view, $data
     */
    public function view($view, $data = null)
    {

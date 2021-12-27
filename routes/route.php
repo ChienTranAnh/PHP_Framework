@@ -2,9 +2,12 @@
 
 use libs\Router;
 use app\controllers\UsersController;
+use libs\DB;
 
    Router::get('/', function (){
       echo 'đây là trang chủ';
+      $db = DB::table('posts')->select('title, content')->distinct()->get();
+      echo '<pre>';print_r($db);
    });
    Router::get('/{id}', function ($id){
       echo "đây là id = $id";

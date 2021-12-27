@@ -8,7 +8,6 @@ class UsersController extends Controller
 {
    public function index()
    {
-      echo 'Đây là danh sách người dùng trong hàm Index';
       self::view('index');
    }
 
