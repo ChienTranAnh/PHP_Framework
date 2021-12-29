@@ -8,6 +8,22 @@
     <title>Index User</title>
 </head>
 <body>
-    <h2>Hello User!</h2>
+    <h2>User list</h2>
+    <table>
+        <tr>
+            <th>Fullname</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Created</th>
+        </tr>
+        <?php foreach ($data as $value) {?>
+        <tr>
+            <td><?= $value['id'] ?></td>
+            <td><?= $value['fullname'] ?></td>
+            <td><?= $value['email'] ?></td>
+            <td><?= $value['created_at'] ?></td>
+        </tr>
+        <?php }?>
+    </table>
 </body>
 </html>

@@ -3,12 +3,16 @@
 namespace app\controllers;
 
 use libs\Controller;
+use libs\DB;
 
 class UsersController extends Controller
 {
    public function index()
    {
-      self::view('index');
+//      self::view('index', 'o to ke bo le ro');
+      $db = DB::table('users')->get();
+      echo '<pre>';print_r($db);
+      return self::view('index', $db);
    }
 
    public function danhSach()
@@ -18,7 +22,9 @@ class UsersController extends Controller
 
    public function detail($id)
    {
-      echo 'Đây là hàm detail trong UserController có id = ' . $id;
+      $db = DB::table('users')->where('id','=',$id)->get();
+      echo '<pre>';print_r($db);
+      return $db;
    }
 
    public function edit($id)

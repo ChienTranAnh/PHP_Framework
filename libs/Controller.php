@@ -21,11 +21,17 @@ class Controller
     *
     * @param $view, $data
     */
-   public function view($view, $data = null)
+   public function view($view, $data = [])
    {
+      if (is_array($data))
+      {
+         extract($data, EXTR_PREFIX_SAME,"data");
+      } else $data = $data;
+
       $controller = explode('\\',App::getController())[2];
       $folderView = strtolower(str_replace('Controller', '', $controller));
       $viewFile = dirname(__DIR__) . '/views/' . $folderView . '/' . $view . '.php';
+
       if (file_exists($viewFile))
       {
          include_once $viewFile;

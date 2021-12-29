@@ -6,7 +6,10 @@ use libs\DB;
 
    Router::get('/', function (){
       echo 'đây là trang chủ';
-      $db = DB::table('posts')->select('title, content')->distinct()->get();
+//      $db = DB::table('users')->insert(['username'=>'rosechen', "password"=>'123', "fullname"=>"Hongngng"]);
+//      $db = DB::table('users')->where('id','=',4)->get();
+//      $db = DB::table('users')->where('id','=',5)->update(['username'=>'mon_lon_ton', "password"=>'789', "fullname"=>"Anh Mon"]);
+      $db = DB::table('users')->where('id','=',4)->where('username','=','Mon')->delete();
       echo '<pre>';print_r($db);
    });
    Router::get('/{id}', function ($id){
