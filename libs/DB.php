@@ -146,13 +146,13 @@ class DB
       $fields_list = '';
       $values_list = '';
       $sql = "INSERT INTO $this->table(";
-
+//echo '<pre>';print_r($data);
       foreach ($data as $key => $value){
          $fields_list .= ", $key";
          $values_list .= ", " . "'$value'";
       }
       $sql .= trim($fields_list, ', ') . ") VALUES(" . trim($values_list, ', ') . ")";
-
+echo $sql;
       return $this->db->exec($sql);
    }
 
@@ -168,7 +168,7 @@ class DB
 
       $sql = "UPDATE $this->table SET ";
       foreach ($data as $key => $value){
-         $sql .= "$key = '".$value."', ";
+         $sql .= "$key='".$value."', ";
       }
 
       $sql = trim($sql, ', ');
@@ -178,7 +178,11 @@ class DB
          $sql .= ' WHERE';
          foreach ($this->where as $key => $where)
          {
-            $sql .= " $where[0] $where[1] '$where[2]'";
+            if (intval($where[2])) {
+               $sql .= " $where[0]$where[1]$where[2]";
+            } else {
+               $sql .= " $where[0]$where[1]'$where[2]'";
+            }
             if ($key < count($this->where) - 1)
             {
                $sql .= " $where[3]";
@@ -191,8 +195,7 @@ class DB
       if ($stmt->rowCount() > 0)
          return "$stmt->rowCount() records UPDATED successfully";
       else
-//      echo '<pre>'; print_r($data);
-      return "Update fails";
+         return "Update fails";
    }
 
    /**
@@ -212,7 +215,11 @@ class DB
          $sql .= ' WHERE';
          foreach ($this->where as $key => $where)
          {
-            $sql .= " $where[0] $where[1] '$where[2]'";
+            if (intval($where[2])) {
+               $sql .= " $where[0]$where[1]$where[2]";
+            } else {
+               $sql .= " $where[0]$where[1]'$where[2]'";
+            }
             if ($key < count($this->where) - 1)
             {
                $sql .= " $where[3]";
