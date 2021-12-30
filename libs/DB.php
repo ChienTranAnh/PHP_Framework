@@ -99,7 +99,7 @@ class DB
 
       $sql = $this->distinct ? 'SELECT DISTINCT ' : 'SELECT ';
 
-      // kiểm tra nếu có chọn trường
+      // kiểm tra nếu có chọn các trường
       if (isset($this->fields))
       {
          $sql .= $this->fields;
@@ -130,7 +130,6 @@ class DB
       $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       return $result;
-//      return $sql;
    }
 
    /**
@@ -146,7 +145,7 @@ class DB
       $fields_list = '';
       $values_list = '';
       $sql = "INSERT INTO $this->table(";
-//echo '<pre>';print_r($data);
+
       foreach ($data as $key => $value){
          $fields_list .= ", $key";
          $values_list .= ", " . "'$value'";

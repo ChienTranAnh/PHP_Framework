@@ -18,6 +18,15 @@ class UsersController extends Controller
    }
 
    /**
+    * hàm hiển thị danh sách User json
+    */
+   public function indexAPI()
+   {
+      $db = DB::table('users')->get();
+      echo json_encode($db);
+   }
+
+   /**
     * hàm hiện thị form thêm mới User
     */
    public function create()

@@ -62,8 +62,7 @@ class Router
 
    /**
     * Ánh xạ tuyến đường đến bảng định tuyến
-    * @param string $url từ URL
-    *
+    * @param string url
     */
    private function matching()
    {

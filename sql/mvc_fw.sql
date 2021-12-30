@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 27, 2021 lúc 02:50 PM
--- Phiên bản máy phục vụ: 10.4.14-MariaDB
--- Phiên bản PHP: 7.4.11
+-- Máy chủ: localhost
+-- Thời gian đã tạo: Th12 30, 2021 lúc 09:20 AM
+-- Phiên bản máy phục vụ: 10.4.21-MariaDB
+-- Phiên bản PHP: 7.4.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,33 +24,39 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `posts`
+-- Cấu trúc bảng cho bảng `users`
 --
 
-CREATE TABLE `posts` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `content` text DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `username` varchar(150) NOT NULL,
+  `password` varchar(150) NOT NULL,
+  `fullname` varchar(255) NOT NULL,
+  `email` varchar(150) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `posts`
+-- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `posts` (`id`, `title`, `content`, `created_at`) VALUES
-(1, 'First post', 'This is a really interesting post.', '2021-12-20 09:19:44'),
-(2, 'Second post', 'This is a fascinating post.', '2021-12-20 09:19:51'),
-(3, 'Third post', 'This is a very informative post.', '2021-12-20 09:19:54');
+INSERT INTO `users` (`id`, `username`, `password`, `fullname`, `email`, `created_at`, `updated_at`) VALUES
+(1, 'admin', '123', 'Anh Chien', 'chien@hotmail.com', '2021-12-29 20:32:44', NULL),
+(6, 'tam_huong', '456', 'Hong Tam', 'hongtam@gmail.com', NULL, NULL),
+(7, 'cao_cuong', '202cb962ac59075b964b07152d234b70', 'Cuong Cao', 'caocuong@gmail.com', NULL, NULL),
+(8, 'thai_tu', '202cb962ac59075b964b07152d234b70', 'Tuan Thai', 'thai_tu@outlook.com', NULL, '2021-12-30 14:11:53'),
+(9, 'coder_boy', '202cb962ac59075b964b07152d234b70', 'The Van Tung', 'abc@fsoft.com', '2021-12-30 14:13:28', NULL),
+(10, 'the_nguyen', '202cb962ac59075b964b07152d234b70', 'Nguyen Vawn The', 'nguyenthe@fsoft.vn', '2021-12-30 14:18:57', NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Chỉ mục cho bảng `posts`
+-- Chỉ mục cho bảng `users`
 --
-ALTER TABLE `posts`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -58,10 +64,10 @@ ALTER TABLE `posts`
 --
 
 --
--- AUTO_INCREMENT cho bảng `posts`
+-- AUTO_INCREMENT cho bảng `users`
 --
-ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
